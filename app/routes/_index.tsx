@@ -1,9 +1,10 @@
-import type { V2_MetaFunction } from "@remix-run/node";
+import type { ActionArgs, V2_MetaFunction } from "@remix-run/node";
 import ActionButton from "~/components/actionButton";
 import DynamicDropDown from "~/components/dropDown";
 import Input from "~/components/input";
 import { User, loginValidator } from "~/types/z.schema";
 import { ValidatedForm } from "remix-validated-form";
+import { userLoginAction } from "~/action/userLoginAction";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -15,6 +16,15 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
+export async function action(args: ActionArgs) {
+  const formData = await args.request.clone().formData();
+  const _action = formData.get("_action");
+  if (_action === "USER_LOGIN") {
+    console.log("hello from product");
+    return userLoginAction(args);
+  }
+  throw new Error("Unknown action");
+}
 export default function Index() {
   return (
     <div className="flex justify-center items-center h-screen bg-[#f3f4f6] mb-4 ">
@@ -37,7 +47,7 @@ export default function Index() {
           <Input labelName="Username" inputType="text" name="username" />
           <Input labelName="Password" inputType="password" name="password" />
 
-          <ActionButton buttonName="Log In" value="CREATE_LOGIN" />
+          <ActionButton buttonName="Log In" value="USER_LOGIN" />
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             Please sign In as user if you are not Admin.
           </p>

@@ -1,3 +1,4 @@
+import { UserType } from '@prisma/client';
 import { withZod } from '@remix-validated-form/with-zod';
 import {z} from 'zod';
 export const User = [
@@ -18,10 +19,10 @@ const zString = (
       .max(maxLength, { message: maxMessage + " " + maxLength });
   };
 
-export const loginSchemaObj = z.object({
+export const userInputSchema = z.object({
     username: zString(3, 50, "username"),
-    type:zString(3, 50, "userType"),
-    password:zString(3, 50, "password"),
+    //TODO not hardcode this
+    user_type:z.enum([UserType.ADMIN, UserType.USER]),
+    password:zString(3, 50, "password")
 })
 
-export const loginValidator = withZod(loginSchemaObj);

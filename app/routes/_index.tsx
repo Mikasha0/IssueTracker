@@ -1,11 +1,14 @@
-import type { ActionArgs, V2_MetaFunction } from "@remix-run/node";
-import ActionButton from "~/components/actionButton";
+import {
+  type ActionArgs,
+  type V2_MetaFunction
+} from "@remix-run/node";
+import { ValidatedForm, validationError } from "remix-validated-form";
 import DynamicDropDown from "~/components/dropDown";
 import Input from "~/components/input";
-import { User, loginValidator } from "~/types/z.schema";
-import { ValidatedForm } from "remix-validated-form";
-import { userLoginAction } from "~/action/userLoginAction";
-
+import { User } from "~/types/z.schema";
+import { createUserSession } from "~/utils/session.server";
+import { clientLoginValidator } from "~/validators/clientLoginValidator";
+import { loginRequestValidator } from "~/validators/loginRequestValidator";
 export const meta: V2_MetaFunction = () => {
   return [
     { title: "IssueTracker" },
@@ -16,15 +19,30 @@ export const meta: V2_MetaFunction = () => {
   ];
 };
 
-export async function action(args: ActionArgs) {
-  const formData = await args.request.clone().formData();
-  const _action = formData.get("_action");
-  if (_action === "USER_LOGIN") {
-    console.log("hello from product");
-    return userLoginAction(args);
+// export async function action(args: ActionArgs) {
+//   const formData = await args.request.clone().formData();
+//   const _action = formData.get("_action");
+//   if (_action === "USER_LOGIN") {
+//     console.log("hello from product");
+//     return userLoginAction(args);
+//   }
+//   throw new Error("Unknown action");
+// }
+
+export const action = async ({ request }: ActionArgs) => {
+  const {data,error} = await loginRequestValidator.validate(request.formData());
+  if (error) {
+    return validationError(error);
   }
-  throw new Error("Unknown action");
-}
+
+ 
+  return await createUserSession(
+    data.id,
+    data.user_type,
+    "/admin"
+  );
+};
+
 export default function Index() {
   return (
     <div className="flex justify-center items-center h-screen bg-[#f3f4f6] mb-4 ">
@@ -34,8 +52,8 @@ export default function Index() {
         </h1>
         <ValidatedForm
           className="space-y-4 md:space-y-6"
-          validator={loginValidator}
-          method="POST"
+          validator={clientLoginValidator}
+          method="post"
         >
           <DynamicDropDown
             labelName="User Type"
@@ -47,7 +65,8 @@ export default function Index() {
           <Input labelName="Username" inputType="text" name="username" />
           <Input labelName="Password" inputType="password" name="password" />
 
-          <ActionButton buttonName="Log In" value="USER_LOGIN" />
+          {/* <ActionButton buttonName="Log In" value="USER_LOGIN" /> */}
+          <button type="submit">Submit</button>
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
             Please sign In as user if you are not Admin.
           </p>

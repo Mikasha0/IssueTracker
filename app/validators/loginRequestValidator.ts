@@ -9,7 +9,6 @@ import z from 'zod';
 //     path:["password"]
 //   })
 // );
-
 export const loginRequestValidator = withZod(userInputSchema.transform(async (data, ctx)=> {
     const  user = await authenticateUserLogin(data);
     if(!user){

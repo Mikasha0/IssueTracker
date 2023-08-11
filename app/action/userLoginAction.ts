@@ -6,15 +6,14 @@ import { createUserSession } from "~/utils/session.server";
 import { loginRequestValidator } from "~/validators/loginRequestValidator";
 
 export const userLoginAction = async ({ request }: ActionArgs) => {
-  const {data,error} = await loginRequestValidator.validate(request.formData());
+  const {data,error} = await loginRequestValidator.validate(await request.formData());
   if (error) {
     return validationError(error);
   }
-
  
   return await createUserSession(
     data.id,
     data.user_type,
-    "/"
+    "/admin"
   );
 };

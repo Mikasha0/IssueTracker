@@ -27,5 +27,7 @@ export const userInputSchema = z.object({
 })
 
 export const userSchema = userInputSchema.extend({
-  name:zString(3,35, "Name")
+  full_name:zString(3,35, "Name")
 })
+
+export type user = z.infer<typeof userSchema>

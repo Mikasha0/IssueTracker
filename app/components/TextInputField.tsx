@@ -6,7 +6,7 @@ interface inputType {
   inputType: string;
   name: string;
 }
-export default function Input({ labelName, name, inputType }: inputType) {
+export default function TextInputField({ labelName, name, inputType }: inputType) {
   const { error, getInputProps } = useField(name);
   return (
     <div>

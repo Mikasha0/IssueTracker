@@ -1,9 +1,9 @@
 import { type ActionArgs, type V2_MetaFunction } from "@remix-run/node";
 import { ValidatedForm } from "remix-validated-form";
 import { userLoginAction } from "~/action/userLoginAction";
-import ActionButton from "~/components/actionButton";
-import DynamicDropDown from "~/components/dropDown";
-import Input from "~/components/input";
+import ActionButton from "~/components/ActionButton";
+import DynamicDropDown from "~/components/DropDown";
+import Input from "~/components/TextInputField";
 import { User } from "~/types/z.schema";
 import { clientLoginValidator } from "~/validators/clientLoginValidator";
 

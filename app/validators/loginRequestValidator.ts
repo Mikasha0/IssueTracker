@@ -3,12 +3,6 @@ import { authenticateUserLogin } from "~/utils/login.utils";
 import { userInputSchema } from "~/types/z.schema";
 import z from 'zod';
 
-// export const loginRequestValidator = withZod(
-//   userInputSchema.transform(async (data) => {return await authenticateUserLogin(data)}, {
-//     message:"Username or Password don't match",
-//     path:["password"]
-//   })
-// );
 export const loginRequestValidator = withZod(userInputSchema.transform(async (data, ctx)=> {
     const  user = await authenticateUserLogin(data);
     if(!user){
@@ -21,4 +15,3 @@ export const loginRequestValidator = withZod(userInputSchema.transform(async (da
     }
     return user;
 }))
-

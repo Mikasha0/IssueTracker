@@ -26,3 +26,6 @@ export const userInputSchema = z.object({
     password:zString(3, 50, "password")
 })
 
+export const userSchema = userInputSchema.extend({
+  name:zString(3,35, "Name")
+})

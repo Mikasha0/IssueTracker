@@ -8,7 +8,6 @@ interface inputType {
 }
 export default function Input({ labelName, name, inputType }: inputType) {
   const { error, getInputProps } = useField(name);
-
   return (
     <div>
       <label

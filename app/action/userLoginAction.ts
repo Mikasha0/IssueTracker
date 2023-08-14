@@ -1,7 +1,5 @@
-import { ActionArgs, redirect } from "@remix-run/node";
+import { ActionArgs } from "@remix-run/node";
 import { validationError } from "remix-validated-form";
-// import { UserType } from "@prisma/client";
-import { authenticateUserLogin } from "~/utils/login.utils";
 import { createUserSession } from "~/utils/session.server";
 import { loginRequestValidator } from "~/validators/loginRequestValidator";
 

@@ -1,6 +1,5 @@
 import { ActionArgs, redirect } from "@remix-run/node";
-import { clientCreateUserValidator } from "~/validators/clientCreateUserValidator";
-import {validationError} from 'remix-validated-form';
+import { validationError } from 'remix-validated-form';
 import { serverCreateUserValidator } from "~/validators/serverCreateUserValidator";
 
 export const createUserAction = async({request}:ActionArgs) =>{

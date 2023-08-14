@@ -1,6 +1,5 @@
 import { UserType } from '@prisma/client';
-import { withZod } from '@remix-validated-form/with-zod';
-import {z} from 'zod';
+import { z } from 'zod';
 export const User = [
     { userType:"ADMIN"},
     { userType:"USER"},
@@ -29,5 +28,7 @@ export const userInputSchema = z.object({
 export const userSchema = userInputSchema.extend({
   full_name:zString(3,35, "Name")
 })
-
+export const clientValidationSchema = userSchema.extend({
+  confirm_password:zString(3,35, "Confirm Password")
+})
 export type user = z.infer<typeof userSchema>

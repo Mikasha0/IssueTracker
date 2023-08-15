@@ -12,6 +12,6 @@ export const userLoginAction = async ({ request }: ActionArgs) => {
   return await createUserSession(
     data.id,
     data.user_type,
-    "/admin"
+    `${data.user_type=="USER"?'/user':'/admin'}`
   );
 };

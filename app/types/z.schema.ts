@@ -5,6 +5,14 @@ export const User = [
     { userType:"USER"},
 ]
 
+export const tableName = [
+  'id',
+  'full_name',
+  'username',
+  'user_type',
+
+]
+
 const zString = (
     minLength = 1,
     maxLength = 100,

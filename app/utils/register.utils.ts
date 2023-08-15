@@ -2,7 +2,6 @@ import { z } from "zod";
 import { clientValidationSchema } from "~/types/z.schema";
 import { db } from "./db.server";
 import { passwordHash } from "./login.utils";
-import * as bcrypt from 'bcryptjs';
 type registerUser = z.infer<typeof clientValidationSchema>;
 export const registerUser = async ({
   full_name,

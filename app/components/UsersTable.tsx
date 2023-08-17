@@ -3,13 +3,16 @@ import { tableName } from "~/types/z.schema";
 import SearchBox from "./SearchBox";
 import UserCreateModal from "./UserCreateModal";
 import {IoMdAdd} from 'react-icons/io'
+import {TbLogout2} from 'react-icons/tb'
 import { UserDetail } from "~/routes/adminDashBoard._index";
+import { useNavigate } from "@remix-run/react";
 
 export default function UsersTable({ userList }: { userList: UserDetail[] }) {
   const [visible, setVisible] = useState(false);
   const toggleCreateUserModal = () => {
     setVisible(!visible);
   };
+  const navigate = useNavigate();
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <div className="pb-4 bg-white dark:bg-gray-900 mt-4">
@@ -18,12 +21,21 @@ export default function UsersTable({ userList }: { userList: UserDetail[] }) {
         </label>
         <div className="relative flex mt-1 justify-between">
           <SearchBox />
+          <div className="flex">
           <button
             className="bg-blue-700 text-sm text-white rounded-lg p-3 mr-3 "
             onClick={toggleCreateUserModal}
           >
            <IoMdAdd/>
           </button>
+          <button
+            className="bg-blue-700 text-sm text-white rounded-lg p-3 mr-3 "
+            onClick={()=>navigate('/logout')}
+          >
+           <TbLogout2/>
+          </button>
+          </div>
+         
           {visible && (
             <UserCreateModal toggleCreateUserModal={toggleCreateUserModal} />
           )}

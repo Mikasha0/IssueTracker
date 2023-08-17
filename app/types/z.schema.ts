@@ -1,8 +1,8 @@
 import { UserType } from '@prisma/client';
 import { z } from 'zod';
 export const User = [
-    { userType:"ADMIN"},
-    { userType:"USER"},
+   "ADMIN",
+   "USER"
 ]
 
 export const tableName = [

@@ -8,9 +8,9 @@ interface userListType{
 }
 export default function UserIssueForm({userList}:userListType) {
   return (
-    <div className="flex justify-center items-center h-screen bg-[#f3f4f6] mb-4 ">
+    <div className="flex justify-center items-center h-[85vh] bg-[#f3f4f6] ">
     <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-5">
+      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
         Create Issue
       </h1>
       <ValidatedForm validator={createIssueClientValidator} method="POST">

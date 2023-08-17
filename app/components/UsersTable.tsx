@@ -1,32 +1,28 @@
-import { tableName } from "~/types/z.schema";
-import UserCreateModal from "./UserCreateModal";
 import { useState } from "react";
-import { Form } from "@remix-run/react";
-import ActionButton from "./ActionButton";
+import { tableName } from "~/types/z.schema";
 import SearchBox from "./SearchBox";
-interface usersTableType {
-  loaderData: Array<any>;
-}
-export default function UsersTable({ loaderData }: usersTableType) {
+import UserCreateModal from "./UserCreateModal";
+import {IoMdAdd} from 'react-icons/io'
+import { UserDetail } from "~/routes/adminDashBoard._index";
+
+export default function UsersTable({ userList }: { userList: UserDetail[] }) {
   const [visible, setVisible] = useState(false);
   const toggleCreateUserModal = () => {
     setVisible(!visible);
   };
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <div className="pb-4 bg-white dark:bg-gray-900">
+      <div className="pb-4 bg-white dark:bg-gray-900 mt-4">
         <label htmlFor="table-search" className="sr-only">
           Search
         </label>
-
         <div className="relative flex mt-1 justify-between">
           <SearchBox />
-
           <button
             className="bg-blue-700 text-sm text-white rounded-lg p-3 mr-3 "
             onClick={toggleCreateUserModal}
           >
-            Create User
+           <IoMdAdd/>
           </button>
           {visible && (
             <UserCreateModal toggleCreateUserModal={toggleCreateUserModal} />
@@ -44,26 +40,17 @@ export default function UsersTable({ loaderData }: usersTableType) {
           </tr>
         </thead>
         <tbody>
-          {loaderData.map((userDetails) => (
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          {userList.map((user, index) => (
+            <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
               <th
                 scope="row"
                 className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {userDetails.id}
+                {user.id}
               </th>
-              <td className="px-6 py-4">{userDetails.full_name}</td>
-              <td className="px-6 py-4">{userDetails.username}</td>
-              <td className="px-6 py-4">{userDetails.user_type}</td>
-
-              <td className="px-6 py-4">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Edit
-                </a>
-              </td>
+              <td className="px-6 py-4">{user.full_name}</td>
+              <td className="px-6 py-4">{user.username}</td>
+              <td className="px-6 py-4">{user.user_type}</td>
             </tr>
           ))}
         </tbody>

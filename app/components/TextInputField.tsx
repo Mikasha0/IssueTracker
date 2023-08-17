@@ -12,7 +12,7 @@ export default function TextInputField({ labelName, name, inputType }: inputType
     <div>
       <label
         htmlFor="email"
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        className="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-white"
       >
         {labelName}
       </label>

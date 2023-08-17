@@ -10,7 +10,6 @@ export const tableName = [
   'full_name',
   'username',
   'user_type',
-
 ]
 
 const zString = (
@@ -40,3 +39,8 @@ export const clientValidationSchema = userSchema.extend({
   confirm_password:zString(3,35, "Confirm Password")
 })
 export type user = z.infer<typeof userSchema>
+
+export const createIssueFormSchema = z.object({
+    issue:zString(3,50,"Issue"),
+    description:zString(3, 100, "Description")
+ })

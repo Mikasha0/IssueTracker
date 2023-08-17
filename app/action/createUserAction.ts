@@ -8,5 +8,5 @@ export const createUserAction = async({request}:ActionArgs) =>{
     return validationError(error);
    }
 
-   return redirect('/user')
+   return redirect('/adminDashBoard')
 }

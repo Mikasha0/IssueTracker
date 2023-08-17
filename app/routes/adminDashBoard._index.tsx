@@ -1,9 +1,17 @@
+import { UserType } from "@prisma/client";
 import { ActionArgs, LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { createUserAction } from "~/action/createUserAction";
 import { findUserName } from "~/action/findUserName";
 import UsersTable from "~/components/UsersTable";
 import { getUsersData } from "~/loader/getUsersData";
+
+export interface UserDetail {
+  id:string,
+  full_name: string;
+  username: string;
+  user_type: UserType;
+}
 
 export const loader = async (args: LoaderArgs) => await getUsersData(args);
 export async function action(args: ActionArgs) {
@@ -17,6 +25,6 @@ export async function action(args: ActionArgs) {
   throw new Error("Unknown action");
 }
 export default function adminPanel() {
-  const loaderData = useLoaderData<typeof loader>();
-  return <UsersTable loaderData={loaderData} />;
+  const data = useLoaderData<typeof loader>() as UserDetail[];
+  return <UsersTable userList={data} />;
 }

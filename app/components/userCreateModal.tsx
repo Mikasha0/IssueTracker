@@ -35,7 +35,7 @@ export default function UserCreateModal({
               type={btnType.submit}
               onClick={toggleCreateUserModal}
             />
-            <ActionButton buttonName="Create User" value="CREATE_USER" />
+            <ActionButton buttonName="Create User" value="CREATE_USER"/>
           </div>
         </ValidatedForm>
       </div>

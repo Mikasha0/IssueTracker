@@ -1,34 +1,20 @@
-import { ValidatedForm } from "remix-validated-form";
-import { createIssueClientValidator } from "~/validators/issue/createIssueClientValidator";
-import TextInputField from "./TextInputField";
-import ActionButton from "./ActionButton";
-import DropDown from "./DropDown";
-interface userListType{
-    userList:{
-       users: string[];
-    }
-}
+import UserIssueForm from "./UserIssueForm";
 
-export default function UserDashBoard({userList}:{userList:string[]}) {
+export default function UserDashBoard({ userList }: { userList: string[] }) {
   return (
-    <div className="flex justify-center items-center h-screen bg-[#f3f4f6] mb-4 ">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-5">
-          Create Issue
-        </h1>
-        <ValidatedForm validator={createIssueClientValidator} method="POST">
-          <TextInputField labelName="Issue" name="issue" inputType="text" />
-          <TextInputField
-            labelName="Description"
-            name="description"
-            inputType="text"
-          />
-          <DropDown labelName="Assignee" name="assignee" data={userList} />
-          <div className="mt-3">
-            <ActionButton buttonName="Create Issue" value="Create_Issue" />
-          </div>
-        </ValidatedForm>
-      </div>
-    </div>
+    <>
+        <nav className="bg-gray-800 p-4">
+        <div className="container mx-auto flex justify-between items-center">
+            <div className="flex space-x-4">
+                <a href="#" className="text-white">Home</a>
+                <a href="#" className="text-white">About</a>
+                <a href="#" className="text-white">Services</a>
+            </div>
+            <a href="#" className="text-white">Logout</a>
+        </div>
+    </nav>
+
+      <UserIssueForm userList={userList} />
+    </>
   );
 }

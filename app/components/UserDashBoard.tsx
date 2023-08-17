@@ -3,8 +3,13 @@ import { createIssueClientValidator } from "~/validators/issue/createIssueClient
 import TextInputField from "./TextInputField";
 import ActionButton from "./ActionButton";
 import DropDown from "./DropDown";
+interface userListType{
+    userList:{
+       users: string[];
+    }
+}
 
-export default function UserDashBoard() {
+export default function UserDashBoard({userList}:{userList:string[]}) {
   return (
     <div className="flex justify-center items-center h-screen bg-[#f3f4f6] mb-4 ">
       <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
@@ -18,10 +23,9 @@ export default function UserDashBoard() {
             name="description"
             inputType="text"
           />
-          {/* <DropDown labelName="Assignee" name="assignee" data={userList}  /> */}
+          <DropDown labelName="Assignee" name="assignee" data={userList} />
           <div className="mt-3">
-          <ActionButton buttonName="Create Issue" value="Create_Issue" />
-
+            <ActionButton buttonName="Create Issue" value="Create_Issue" />
           </div>
         </ValidatedForm>
       </div>

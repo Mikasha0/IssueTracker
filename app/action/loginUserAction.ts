@@ -14,6 +14,6 @@ export const loginUserAction = async ({ request }: ActionArgs) => {
   return await createUserSession(
     data.id,
     data.user_type,
-    `${data.user_type=="USER"?'/user':'/adminDashBoard'}`
+    `${data.user_type=="USER"?'/userDashBoard':'/adminDashBoard'}`
   );
 };

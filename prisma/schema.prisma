@@ -14,6 +14,28 @@ model User {
   password          String    @db.VarChar(100)
   user_type         UserType  @default(USER)
   created_at         DateTime  @default(now())
+
+  
+  issues_assigned   Issue[] @relation("assignee_user")
+  issues_reported   Issue[] @relation("reporter_user")
+
+  @@map("user")
+}
+
+model Issue {
+  id                String      @id @default(uuid())
+  summary           String      @db.VarChar(100)
+  description       String      @db.VarChar(200)
+  status            StatusType  @default(TODO)
+  created_at        DateTime    @default(now())
+
+  assignee          User      @relation(name: "assignee_user", fields: [assignee_id], references: [id])
+  assignee_id        String
+
+  reporter          User      @relation(name: "reporter_user", fields: [reporter_id], references: [id])
+  reporter_id       String
+
+  @@map("issue")
 }
 
 enum IssueModificationType {

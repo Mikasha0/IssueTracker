@@ -22,8 +22,6 @@ export default function LoginForm() {
             labelName="User Type"
             name="user_type"
             data={User}
-            dataKey="userType"
-            dataValueKey="userType"
           />
           <TextInputField labelName="Username" inputType="text" name="username" />
           <TextInputField labelName="Password" inputType="password" name="password" />

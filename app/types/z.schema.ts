@@ -37,10 +37,16 @@ export const userSchema = userInputSchema.extend({
 })
 export const clientValidationSchema = userSchema.extend({
   confirm_password:zString(3,35, "Confirm Password")
+}).refine((schema)=>{
+  return schema.password === schema.confirm_password
+},{
+  message:"Password and Confirm Password do not match",
+  path:['confirm_password']
 })
 export type user = z.infer<typeof userSchema>
 
 export const createIssueFormSchema = z.object({
     issue:zString(3,50,"Issue"),
-    description:zString(3, 100, "Description")
+    description:zString(3, 100, "Description"),
+    assignee:z.string().min(1)
  })

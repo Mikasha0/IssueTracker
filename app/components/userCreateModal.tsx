@@ -23,8 +23,6 @@ export default function UserCreateModal({
             labelName="User Type:"
             name="user_type"
             data={User}
-            dataKey="userType"
-            dataValueKey="userType"
           />
           <Input labelName="Password" name="password" inputType="password" />
           <Input labelName="Confirm Password" name="confirm_password" inputType="password" />

@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 interface NormalButtonTypes {
   buttonName: string;
   type?: btnType;
-  onClick?: MouseEventHandler;
+  onClick?: ()=>void;
 }
 export enum btnType {
   submit = "submit",

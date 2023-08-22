@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 
 interface ActionButtonTypes {
   buttonName: string;
-  value: string;
+  value?: string;
   onClick?: MouseEventHandler;
 }
 export default function ActionButton({

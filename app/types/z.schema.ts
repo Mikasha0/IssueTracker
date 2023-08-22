@@ -46,7 +46,7 @@ export const clientValidationSchema = userSchema.extend({
 export type user = z.infer<typeof userSchema>
 
 export const createIssueFormSchema = z.object({
-    issue:zString(3,50,"Issue"),
+    summary:zString(3,50,"Summary"),
     description:zString(3, 100, "Description"),
     assignee:z.string().min(1)
  })

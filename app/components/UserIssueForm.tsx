@@ -14,7 +14,7 @@ export default function UserIssueForm({ userList }: userListType) {
           Create Issue
         </h1>
         <ValidatedForm validator={createIssueClientValidator} method="POST">
-          <TextInputField labelName="Issue" name="issue" inputType="text" />
+          <TextInputField labelName="Summary" name="summary" inputType="text" />
           <TextInputField
             labelName="Description"
             name="description"
@@ -22,7 +22,7 @@ export default function UserIssueForm({ userList }: userListType) {
           />
           <DropDown labelName="Assignee" name="assignee" data={userList} />
           <div className="mt-3">
-            <ActionButton buttonName="Create Issue" value="Create_Issue" />
+            <ActionButton buttonName="Create Issue" />
           </div>
         </ValidatedForm>
       </div>

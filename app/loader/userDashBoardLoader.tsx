@@ -6,7 +6,6 @@ import { getCurrentUser } from "~/utils/getCurrentUser";
 export const userDashBoardLoader = async ({ request }: LoaderArgs) => {
   const user = await getCurrentUser(request);
   const users = await getAllUserName();
-  console.log(users)
   users.map((users)=>{ console.log(users[0])})
   return user?.user_type !== UserType.USER
     ? redirect("/login")

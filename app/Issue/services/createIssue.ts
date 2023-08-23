@@ -1,10 +1,10 @@
+import { db } from "~/utils/db.server";
 import {
-  SelectUserOptions,
-  WhereUserOptions,
-  findOneUser,
+    SelectUserOptions,
+    WhereUserOptions,
+    findOneUser,
 } from "~/utils/getAllUser";
 import { CreateIssueData } from "../types/issue.types";
-import { db } from "~/utils/db.server";
 
 export const createIssue = async (createIssueData: CreateIssueData) => {
   const issue = await db.issue.create({
@@ -36,8 +36,8 @@ export const createIssue = async (createIssueData: CreateIssueData) => {
       },
     },
   });
-//   const event_url = `${IssueEvent.issue_created + "/" + issue.assignee.id}`;
-//   emitter.emit(event_url, issue.reporter.username);
+  //   const event_url = `${IssueEvent.issue_created + "/" + issue.assignee.id}`;
+  //   emitter.emit(event_url, issue.reporter.username);
   return issue;
 };
 

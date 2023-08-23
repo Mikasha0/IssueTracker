@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex space-x-4">
           <button
-            className="mr-4"
+            className="mr-4 text-white"
             onClick={() => {
               navigate("/userdashboard");
             }}
@@ -16,7 +16,7 @@ export default function Navbar() {
             Add Issue
           </button>
           <button
-            className="mr-4"
+            className="mr-4 text-white"
             onClick={() => {
               navigate("/userdashboard/issues/assigned");
             }}
@@ -25,7 +25,7 @@ export default function Navbar() {
           </button>
 
           <button
-            className="mr-4"
+            className="mr-4 text-white"
             onClick={() => {
               navigate("/userdashboard/issues/reported");
             }}
